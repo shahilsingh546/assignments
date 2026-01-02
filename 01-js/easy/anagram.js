@@ -5,7 +5,33 @@
 */
 
 function isAnagram(str1, str2) {
+if (str1.length != str2.length){
+  return false;
+}
+str1 = str1.toLowerCase();
+str2 = str2.toLowerCase();
+str1 = str1.replace(' ', '');
+str2 = str2.replace(' ', '');
 
+let freq = new Array(26).fill(0);
+for(let i =0;i<str1.length;i++)
+{
+  index = str1[i].charCodeAt(i) - 'a'.charCodeAt(0)
+  freq[index]++;
+}
+for(let i =0;i<str2.length;i++)
+{
+  index = str2.charCodeAt(i) - 'a'.charCodeAt(0)
+  freq[index]--;
+}
+for(let i =0;i<freq.length;i++)
+{
+  if(freq[i]>0)
+  {
+    return false;
+  }
+}
+return true;
 }
 
 module.exports = isAnagram;

@@ -8,6 +8,18 @@ Hint - use Date class exposed in JS
 There is no automated test for this one, this is more for you to understand time goes up as computation goes up
 */
 
+const { start } = require("node:repl");
+
 function calculateTime(n) {
-    return 0.01;
+    start_time = Date.now();
+    cnt = 0;
+    for(let i =0;i<=n;i++)
+    {
+        cnt++;
+    }
+    end_time = Date.now();
+    return (end_time - start_time)/1000;
 }
+console.log(calculateTime(100));
+console.log(calculateTime(100000));
+console.log(calculateTime(1000000000));

@@ -16,6 +16,67 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+const { error } = require("node:console");
+
+class Calculator {
+  constructor()
+  {
+    this.result = 0
+  }
+  add(num)
+  {
+
+    let ans = num + this.result;
+    this.result = ans;
+    return ans;
+  }
+  subtract(num){
+    let ans =  this.result - num;
+    this.result = ans;
+    return ans;
+  }
+  multiply(num){
+    let ans =  num*this.result;
+    this.result = ans;
+    return ans;
+  }
+  divide(num){
+    if (num ==0){
+      throw new Error("divison by error")
+    }
+    try{
+    let ans = this.result/num;
+    this.result = ans;
+    return ans;}
+    catch(err)
+    {
+      throw new Error("divison by zero")
+    }
+  }
+  clear(){
+    this.result =0;
+  }
+  getResult()
+  {
+    return this.result;
+  }
+  calculate(str){
+    str = str.replace(/\s+/g, " ")
+    str = str.replaceAll(' ', '')
+    try {
+
+    let ans = eval(str)
+    if (ans == 'Infinity'){
+      throw new Error("invalid divison")
+    }
+    this.result = ans;
+    return ans;
+    }
+    catch(err)
+    {
+      throw new Error("expression invalid")
+    }
+  }
+}
 
 module.exports = Calculator;
